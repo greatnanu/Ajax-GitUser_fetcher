@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Github Profile Finder</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style>
-	img{width:100%;}
+		img {
+			width: 100%;
+		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
 		<form id="userForm">
@@ -18,18 +22,18 @@
 		<div id="profile"></div>
 	</div>
 	<script>
-		function getProfile(e){
+		function getProfile(e) {
 			e.preventDefault();
 			console.log('Fetching...');
 
 			var username = document.getElementById('username').value;
-			if(!username || username == ''){
-				username = 'bradtraversy';
+			if (!username || username == '') {
+				username = 'greatnanu';
 			}
 
 			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function(){
-				if(xhttp.readyState == 4 && xhttp.status == 200){
+			xhttp.onreadystatechange = function () {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
 					var user = JSON.parse(xhttp.responseText);
 					document.getElementById('profile').innerHTML = `<div class="panel 		panel-default">
   								<div class="panel-heading">
@@ -55,11 +59,12 @@
 							</div>`;
 				}
 			}
-			xhttp.open('GET', 'https://api.github.com/users/'+username, true);
+			xhttp.open('GET', 'https://api.github.com/users/' + username, true);
 			xhttp.send();
 		}
 
 		document.getElementById('userForm').addEventListener('submit', getProfile, false);
 	</script>
 </body>
+
 </html>
